@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+        <meta charset="utf-8">
+        <title>Home Page</title>
+        <meta name="description" content="SOEN 387 Project Homepage.">
+        <link rel="stylesheet" href="stylesheet.css">
+    </head>
+    <body>
+      
+          <h1>CINEMATIC</h1>
+       
+            <nav>
+                <ul>
+  <li><a href="homepage.html">HOME</a></li>
+  <li><a href="profile.html">YOUR PROFILE</a></li>
+  <li><a href="booking.html">BOOK TICKETS</a></li>
+  <li><a href="recommendations.html">RECOMMENDATIONS</a></li>
+  <li><a href="">NEAR YOU</a></li>
+  <li style="float:right"><a class="active" href="signup.html">SIGN UP</a></li>
+  <li style="float:right"><a class="active" href="login.html">LOG IN</a></li>
+</ul>
+            </nav>
+        
+            <div>    
+                <h2>Sign Up today!</h2>    
+                
+            </div>
+                
+            <div class="flex-container-signup">          
+                <div id="container">
+                    <form method="post">
+                        <label>First Name</label><br>  
+                            <input type = "text" name = "first_name"/><br>
+                                <!--will output the error here-->
+                                    <span class = "error"></span>
+                        <label>Date of Birth (yyyy-mm-dd)</label><br>
+                            <input type="text" name="dob"><br>
+                               <!--will output the error here-->
+                                    <span class = "error"></span>
+                        <label>Phone Number</label><br>
+                            <input type="tel" name="phone"><br>
+                                <!--will output the error here-->
+                                  <span class = "error"></span> 
+                                 <label>Password</label><br>
+                                    <input type="password" name="password"><br>
+                                <!--will output the error here-->
+                                  <span class = "error"></span> 
+<!--SUBMIT BUTTON IS HERE-->   
+                                <br>
+                                <button type="submit">SUBMIT</button>							  
+                        </div>
+							<div style="padding-top:2em;">
+                        <label>Last Name</label><br>
+                            <input type = "text" name = "last_name"/><br>
+                                <!--will output the error here-->
+                                  <span class = "error"></span>
+                        <label>Email Address</label><br>
+                            <input type="text" name="email"><br>
+                                <!--will output the error here-->
+                                  <span class = "error"></span>		  
+						<label>Address</label><br>
+                            <input type="text" name="address"><br>
+                                <!--will output the error here-->
+                                  <span class = "error"></span>
+                    </form>
+                </div>
+            </div><!--end of flex-container-signup-->         
+       
+        
+    </body>
+</html>
