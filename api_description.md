@@ -1,11 +1,11 @@
-##Cinema Website
+## Cinema Website
 
 
 The Cinema website will loosely simulate existing movie websites, such as “Cineplex.com”. The site’s functionalities will include Login, Logout, Signup, Ticket Booking services, and a Movie Recommendations service.
 
 
 
-###Micro Service 1: User information
+### Micro Service 1: User information
 
 
 Stores the user information (e.g email, avatar) and manage user
@@ -16,7 +16,7 @@ Interact with users via email (optional)
 
 
 
-###Microservice 2: Authentication
+### Microservice 2: Authentication
 
 
 Perform authentication for each microservice call. Returns authentication tokens if the user is authenticated
@@ -25,7 +25,7 @@ Login, register
 
 
 
-###Micro Service 3: Movie Recommendations
+### Micro Service 3: Movie Recommendations
 
 
 Registered users will complete a profile indicating their movie preferences, such as favored movie genre, actors, directors, producers, etc.
@@ -36,7 +36,7 @@ In addition, any new movies added to the system will also be suggested to the us
 
 
 
-###Micro Service 4: Online Ticket Booking
+### Micro Service 4: Online Ticket Booking
 
 
 Provide users with movie ticket information based on the location, movie name and date they entered.
