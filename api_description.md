@@ -46,3 +46,11 @@ When a movie ticket is successfully booked, a confirmation letter (a pdf file) w
 In order to book a ticket, user has to first sign in (or sign up) to validate their identity. This requires the interaction with ‘User Info Management’ microservice.  
 
 Any movie information other than its name, show time and the number of available tickets requested by users will have to communicate with ‘Movie Recommendations’ microservice
+
+|     Methods    | HTTP Request | Description |
+| ---------------|--------------|-------------|
+| listAllTickets | GET /tickets         | List all the tickets |
+| getTickets     | GET /ticket          | Return ticket info by movie name |
+| bookTicket     | POST /bookTicket     | Book movie ticket |
+| cancelTicket   | POST /cancelTicket   | Cancel movie ticket |
+| getBookingInfo | GET /booking         | Return ticket booking information for a given user |
