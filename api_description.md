@@ -14,6 +14,13 @@ Provide a endpoint to list the users and also allow to query the user base on th
 
 Interact with users via email (optional)
 
+|     Methods    | HTTP Request | Description |
+| ---------------|--------------|-------------|
+| getUserInfo    | GET /users/<id>  | Return user info by user id |
+| addUserInfo    | POST /users      | Insert user profile |
+| updateUserInfo | PUT /user/<id>   | Edit user profile or update user's point |
+| EmailToUser    | POST /Emailuser/ | Send email to user |
+
 
 
 ### Microservice 2: Authentication
