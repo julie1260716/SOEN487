@@ -21,7 +21,14 @@ Interact with users via email (optional)
 
 Perform authentication for each microservice call. Returns authentication tokens if the user is authenticated
 
-Login, register
+User Login, register and change password
+
+|     Methods    | HTTP Request | Description |
+| ---------------|--------------|-------------|
+| Login | POST /login         | User Login |
+| Register | POST /user         | Register user |
+| ChangePSW | PUT /user         | Change password |
+| GetToken     | POST /auth/token          | Return token |
 
 
 
