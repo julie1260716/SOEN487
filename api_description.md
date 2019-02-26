@@ -13,6 +13,7 @@ Stores the user information (e.g email, avatar) and manage user
 Provide a endpoint to list the users and also allow to query the user base on their user ID and also edit info
 
 Interact with users via email (optional)
+
 |     Methods    | HTTP Request | Description |
 | ---------------|--------------|-------------|
 | getUserInfo    | GET /users/<id>  | Return user info by user id |
