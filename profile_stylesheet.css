@@ -17,7 +17,6 @@ body {
     padding: 4em 2em 4em;
 }
 
-
 .flex-container { 
     text-align: center;
     display: inline-flex;
@@ -63,7 +62,7 @@ span{
 h2 { 
     font-size: 1.5em;
     color: #000000;
-    margin-top: 3em;
+    margin-top: 2.5em;
     margin-left: 1em;
     border-bottom: 2px solid black;
     margin-bottom: 20px;
@@ -71,11 +70,20 @@ h2 {
     width: 93%;
 }
  
+p {
+    font-size: 15px;
+    color: #000000;
+    margin-top: 1em; 
+    margin-left: 1.4em;
+    width: 85%;
+}
+
 label {
-    color:  #ff9900;
+    line-height: 2;
+    margin-top: 1em;
+    color: #FF7E00;
     font-size: 1.1em;
-    font-weight: 600;
-    line-height: 3;	
+    font-weight: 200;
 }
 
 /*!--NAVIGATION BAR--*/
@@ -135,29 +143,6 @@ a {
     border-top: 1px solid #004080;
 }
 
-/*!--IMG Movie Posters--*/
-img {
-    max-width: 150px;
-}
-
-/*!--TITLES Movie Titles--*/
-.movie_titles {
-    margin-top: 1px;
-    text-align: left;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-/*!--Book Tickets--*/
-.book {
-    margin-top: 1px;
-    text-align: left;
-    font-size: 12px;
-    color: #004080;
-    text-decoration: none;
-   
-}
-
 .subtitle {
     color:  #000000;
     font-weight: 600;
@@ -166,14 +151,20 @@ img {
     margin-bottom: 0.7em;
 }
 
+/*!--FORM--*/
+form {
+    margin-left: 1.4em;
+}
+
+
 /*!--BUTTON FOR FORM SUBMISSION--*/
-.button {
+button {
     border: none;
     color: white;
-    padding-top: 2em;
+    padding: 1em;
+    background-color: #ff9900;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
+    font-size: 14px;
     
 }
