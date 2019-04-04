@@ -18,23 +18,32 @@ body {
 }
 
 .flex-container { 
-    text-align: left;
+    text-align: center;
     display: inline-flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-between;
-    width: 90%; 
-    margin-left: 2em;
+    justify-content: flex-start;
+    width: 100%; 
+    margin: 0 auto;
 }
 
 .flex-container div { 
-    width: 50%;
-    font-size: 15px;
+    padding: 1em; 
+    margin: 0 auto;
 }
 
 #container {
     padding-left: 5em;
     padding-top: 2em;
+}
+
+/*!--SIGNUP FORM--*/
+.flex-container-signup { 
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 80%;
+    
 }
 
 h1 {
@@ -60,18 +69,20 @@ h2 {
     padding-bottom: 0.5em;
     width: 93%;
 }
-
+ 
 p {
-    padding-top: 1em;
     font-size: 15px;
     color: #000000;
+    margin-top: 1em; 
+    margin-left: 1.4em;
+    width: 85%;
 }
 
-label {   
-    line-height: 2.5;
-    
+label {
+    line-height: 2;
+    margin-top: 1em;
     color: #FF7E00;
-    font-size: 14px;
+    font-size: 1.1em;
     font-weight: 200;
 }
 
@@ -84,7 +95,7 @@ nav {
     font-weight: 400;
 }
 
-ul {
+.nav-ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -92,7 +103,7 @@ ul {
   background-color: #D10202;
 }
 
-li {
+.nav-li {
   float: left;
 }
 
@@ -138,4 +149,22 @@ a {
     font-size: 1.4em;
     margin-top: 3em;
     margin-bottom: 0.7em;
+}
+
+/*!--FORM--*/
+form {
+    margin-left: 1.4em;
+}
+
+
+/*!--BUTTON FOR FORM SUBMISSION--*/
+button {
+    border: none;
+    color: white;
+    padding: 1em;
+    background-color: #ff9900;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    
 }

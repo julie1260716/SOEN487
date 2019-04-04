@@ -17,6 +17,7 @@ body {
     padding: 4em 2em 4em;
 }
 
+
 .flex-container { 
     text-align: center;
     display: inline-flex;
@@ -59,10 +60,10 @@ span{
     font-weight: bolder;
 }
 
-h2 { 
+.base-h2 {
     font-size: 1.5em;
     color: #000000;
-    margin-top: 2.5em;
+    margin-top: 3em;
     margin-left: 1em;
     border-bottom: 2px solid black;
     margin-bottom: 20px;
@@ -70,20 +71,11 @@ h2 {
     width: 93%;
 }
  
-p {
-    font-size: 15px;
-    color: #000000;
-    margin-top: 1em; 
-    margin-left: 1.4em;
-    width: 85%;
-}
-
 label {
-    line-height: 2;
-    margin-top: 1em;
-    color: #FF7E00;
+    color:  #ff9900;
     font-size: 1.1em;
-    font-weight: 200;
+    font-weight: 600;
+    line-height: 3;	
 }
 
 /*!--NAVIGATION BAR--*/
@@ -95,7 +87,7 @@ nav {
     font-weight: 400;
 }
 
-ul {
+.nav-ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -103,7 +95,7 @@ ul {
   background-color: #D10202;
 }
 
-li {
+.nav-li {
   float: left;
 }
 
@@ -143,6 +135,29 @@ a {
     border-top: 1px solid #004080;
 }
 
+/*!--IMG Movie Posters--*/
+img {
+    max-width: 150px;
+}
+
+/*!--TITLES Movie Titles--*/
+.movie_titles {
+    margin-top: 1px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/*!--Book Tickets--*/
+.book {
+    margin-top: 1px;
+    text-align: left;
+    font-size: 12px;
+    color: #004080;
+    text-decoration: none;
+   
+}
+
 .subtitle {
     color:  #000000;
     font-weight: 600;
@@ -151,20 +166,86 @@ a {
     margin-bottom: 0.7em;
 }
 
-/*!--FORM--*/
-form {
-    margin-left: 1.4em;
-}
-
-
 /*!--BUTTON FOR FORM SUBMISSION--*/
-button {
+.button {
     border: none;
     color: white;
-    padding: 1em;
-    background-color: #ff9900;
+    padding-top: 2em;
     text-align: center;
     text-decoration: none;
-    font-size: 14px;
+    display: inline-block;
+    font-size: 12px;
     
+}
+
+/*!--Footer--*/
+
+.footer-box {
+    float: left;
+    width: 25%;
+}
+
+.footer-box-content {
+    padding-left: 10%;
+    text-align: left;
+}
+
+.footer-h {
+    margin-bottom: 10px;
+}
+
+.footer-ul {
+    list-style-type: none;
+    font-size: small;
+    padding: 0;
+    margin: 0;
+}
+
+/*!-- booking.html --*/
+label {
+    width: 100%;
+}
+
+.booking-box-t1 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 36px;
+}
+
+.booking-box-t2 {
+    text-align: left;
+    padding-right: 26px;
+}
+
+.booking-h2 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    text-align: left;
+    color: #7e7d7d;
+    border-bottom: 2px solid lightgrey;
+}
+
+.booking-input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.booking-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.booking-btn:hover {
+  background-color: #45a049;
 }

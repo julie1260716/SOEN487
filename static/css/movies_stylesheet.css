@@ -17,34 +17,24 @@ body {
     padding: 4em 2em 4em;
 }
 
-
 .flex-container { 
-    text-align: center;
+    text-align: left;
     display: inline-flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: flex-start;
-    width: 100%; 
-    margin: 0 auto;
+    justify-content: space-between;
+    width: 90%; 
+    margin-left: 2em;
 }
 
 .flex-container div { 
-    padding: 1em; 
-    margin: 0 auto;
+    width: 50%;
+    font-size: 15px;
 }
 
 #container {
     padding-left: 5em;
     padding-top: 2em;
-}
-
-/*!--SIGNUP FORM--*/
-.flex-container-signup { 
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    width: 80%;
-    
 }
 
 h1 {
@@ -63,19 +53,26 @@ span{
 h2 { 
     font-size: 1.5em;
     color: #000000;
-    margin-top: 3em;
+    margin-top: 2.5em;
     margin-left: 1em;
     border-bottom: 2px solid black;
     margin-bottom: 20px;
     padding-bottom: 0.5em;
     width: 93%;
 }
- 
-label {
-    color:  #ff9900;
-    font-size: 1.1em;
-    font-weight: 600;
-    line-height: 3;	
+
+p {
+    padding-top: 1em;
+    font-size: 15px;
+    color: #000000;
+}
+
+label {   
+    line-height: 2.5;
+    
+    color: #FF7E00;
+    font-size: 14px;
+    font-weight: 200;
 }
 
 /*!--NAVIGATION BAR--*/
@@ -87,7 +84,7 @@ nav {
     font-weight: 400;
 }
 
-ul {
+.nav-ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -95,7 +92,7 @@ ul {
   background-color: #D10202;
 }
 
-li {
+.nav-li {
   float: left;
 }
 
@@ -135,29 +132,6 @@ a {
     border-top: 1px solid #004080;
 }
 
-/*!--IMG Movie Posters--*/
-img {
-    max-width: 150px;
-}
-
-/*!--TITLES Movie Titles--*/
-.movie_titles {
-    margin-top: 1px;
-    text-align: left;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-/*!--Book Tickets--*/
-.book {
-    margin-top: 1px;
-    text-align: left;
-    font-size: 12px;
-    color: #004080;
-    text-decoration: none;
-   
-}
-
 .subtitle {
     color:  #000000;
     font-weight: 600;
@@ -166,14 +140,25 @@ img {
     margin-bottom: 0.7em;
 }
 
-/*!--BUTTON FOR FORM SUBMISSION--*/
-.button {
-    border: none;
-    color: white;
-    padding-top: 2em;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    
+/*!--Footer--*/
+
+.footer-box {
+    float: left;
+    width: 25%;
+}
+
+.footer-box-content {
+    padding-left: 10%;
+    text-align: left;
+}
+
+.footer-h {
+    margin-bottom: 10px;
+}
+
+.footer-ul {
+    list-style-type: none;
+    font-size: small;
+    padding: 0;
+    margin: 0;
 }
