@@ -1,13 +1,14 @@
 from flask import Flask, render_template, jsonify
-from ticket_booking_service.database_ticket_booking import db, DATABASE_URI, init_database
-from ticket_booking_service.view_ticket_booking import tickets_blueprint
+from database_user import db, DATABASE_URI
+from view_user import users_blueprint
 
 app = Flask(__name__, template_folder="../templates", static_folder="../static")
 app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URI
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.app = app
 db.init_app(app)
-init_database()
-app.register_blueprint(tickets_blueprint)
+db.create_all()
+app.register_blueprint(users_blueprint)
 
 
 @app.errorhandler(403)
@@ -22,11 +23,11 @@ def page_not_found(e):
     return render_template("404.html"), 404
 
 
-@app.route('/booking.html')
-def ticket_booking_page():
-    return render_template("booking.html")
-
-
+# @app.route('/booking.html')
+# def ticket_booking_page():
+#     return render_template("booking.html")
+#
+#
 @app.route('/')
 @app.route('/homepage.html')
 def index():
@@ -52,5 +53,4 @@ def index():
 """
 
 if __name__ == '__main__':
-    # set different port number to differentiate services deployed on the same local server
-    app.run(port=5003, debug=True)
+    app.run(host='127.0.0.1', port=5001, debug=True)
