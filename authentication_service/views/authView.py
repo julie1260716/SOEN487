@@ -32,13 +32,13 @@ def token_required(func):
             token = request.headers['x-access-token']
 
         if not token:
-            return jsonify({'message' : 'Token is missing!'}), 401
+            return jsonify({'message': 'Token is missing!'}), 401
 
         try:
             data = jwt.decode(token, app.config['SECRET_KEY'])
             current_user = Auth.query.filter_by(public_id=data['public_id'])
         except:
-            return jsonify({'message' : 'Token is invalid!'}), 401
+            return jsonify({'message': 'Token is invalid!'}), 401
         return func(current_user, *arg, **keywordargs)
     return wrapper
 
@@ -59,6 +59,24 @@ def forward_user_info(public_id, first_name, last_name, email, date_of_birth, ph
     try:
         print("before request")
         response = requests.post(url, headers=headers, json=payload)
+        print("after request")
+    except:
+        print("i am inside catch block")
+        # return jsonify(dict(code=404, msg="whoops! something went wrong!!"))
+        return make_response(jsonify({"code": 404, "msg": "bad request"}), 404)
+    return make_response(jsonify({"code": 200, "msg": "success"}), 200)
+
+
+def forward_new_email(public_id, email):
+    payload = {
+        "email": email
+    }
+    headers = {'content-type' : 'application/json'}
+    url = os.environ.get("USER_SERVICE_URL")
+    print(url)
+    try:
+        print("before request")
+        response = requests.post(url+"/update-email/"+public_id, headers=headers, json=payload)
         print("after request")
     except:
         print("i am inside catch block")
@@ -153,7 +171,8 @@ def login():
 
 
 @authView.route("/auth/promote/<user_id>", methods={"PUT"})
-def promote(user_id):
+@token_required
+def promote(current_user, user_id):
     user = Auth.query.filter_by(public_id=user_id).first()
     if user is None:
         return make_response(jsonify({"code": 404,
@@ -166,9 +185,53 @@ def promote(user_id):
     return jsonify({"code": 200, "msg": "Promote success"})
 
 
+@authView.route("/auth/change-password/<user_id>", methods={"PUT"})
+@token_required
+def change_password(current_user, user_id):
+    password = request.form.get('password')
+    user = Auth.query.filter_by(public_id=user_id).first()
+    if password is None:
+        return make_response(jsonify({"code": 403,
+                                      "msg": "Can not update password, Missing mandatory fields."}), 403)
+    if user is None:
+        return make_response(jsonify({"code": 404,
+                                      "msg": "Can not update password, user not found."}), 404)
+    hashed_password = generate_password_hash(request.form.get('password'), method='sha256')
+    user.password = hashed_password
+    try:
+        db.session.commit()
+    except sqlalchemy.exc.SQLAlchemyError as error:
+        return make_response(jsonify({"code": 404, "msg": str(error)}), 404)
+    return jsonify({"code": 200, "msg": "Update password successfully"})
+
+
+@authView.route("/auth/change-email/<user_id>", methods={"PUT"})
+@token_required
+def change_email(current_user, user_id):
+    email = request.form.get('email')
+    user = Auth.query.filter_by(public_id=user_id).first()
+    if email is None:
+        return make_response(jsonify({"code": 403,
+                                      "msg": "Can not update email, Missing mandatory fields."}), 403)
+    if user is None:
+        return make_response(jsonify({"code": 404,
+                                      "msg": "Can not update email, user not found."}), 404)
+    user.email = email
+    try:
+        response = forward_new_email(user_id, email)
+        if response.status_code != 404:
+            db.session.commit()
+        else:
+            return make_response(jsonify({"code": 404, "msg": "Whoops, something went wrong!"}), 404)
+
+    except sqlalchemy.exc.SQLAlchemyError as error:
+        return make_response(jsonify({"code": 404, "msg": str(error)}), 404)
+    return jsonify({"code": 200, "msg": "Update email successfully"})
+
+
 @authView.route("/auth/delete/<user_id>", methods={"DELETE"})
 @token_required
-def delete_user_from_auth(user_id):
+def delete_user_from_auth(current_user, user_id):
     user = Auth.query.filter_by(public_id=user_id).first()
     if user is None:
         return make_response(jsonify({"code": 404,
