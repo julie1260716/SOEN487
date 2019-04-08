@@ -64,7 +64,7 @@ def forward_user_info(public_id, first_name, last_name, email, date_of_birth, ph
         print("i am inside catch block")
         # return jsonify(dict(code=404, msg="whoops! something went wrong!!"))
         return make_response(jsonify({"code": 404, "msg": "bad request"}), 404)
-    return make_response(jsonify({"code": 200, "msg": response}), 200)
+    return make_response(jsonify({"code": 200, "msg": "success"}), 200)
 
 
 @authView.route("/auth/check", methods={"GET"})
@@ -80,7 +80,13 @@ def token_verification():
         current_user = Auth.query.filter_by(public_id=data['public_id'])
     except:
         return jsonify({'message' : 'Token is invalid!'}), 401
-    return jsonify({"code": 200, "msg": "token has been verified successfully!", 'current_user': current_user, 'user_token': token})
+    return jsonify({"code": 200, "msg": "token has been verified successfully!",
+                    'current_user_info': {
+                        'email': current_user.email,
+                        'public_id': current_user.public_id
+                        },
+                    'user_token': token
+                    })
 
 
 @authView.route("/auth/sign-up", methods={"POST"})
@@ -105,7 +111,7 @@ def sign_up():
     else:
         new_user = Auth(public_id=public_id, email=email, password=hashed_password, admin=False)
         response = forward_user_info(public_id, first_name, last_name, email, date_of_birth, phone_number, address)
-        if response.status_code != 400:
+        if response.status_code != 404:
             db.session.add(new_user)
             try:
                 db.session.commit()
@@ -134,7 +140,12 @@ def login():
 
     if check_password_hash(user.password, password):
         print(app.config['SECRET_KEY'])
-        token = jwt.encode({'public_id' : user.public_id, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'])
+        token = jwt.encode({'public_id': user.public_id,
+                            'email': user.email,
+                            'admin': user.admin,
+                            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                           app.config['SECRET_KEY']
+                           )
         return jsonify({'token': token.decode('UTF-8')})
 
     return make_response("Could not verify", 401, {"WWW-Authenticate": "Basic realm='Login required!'"})
