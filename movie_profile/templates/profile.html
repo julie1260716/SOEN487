@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% block head %}
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/profile_stylesheet.css') }}">
+{% endblock %}
+{% block content %}
+        
+        <div>
+            <h2 class="base-h2">YOUR MOVIE PROFILE</h2>
+            <p>Our objective is to provide you with movie recommendations best suited to your interests.<br>
+                Complete the following fields to help us suggest the right movies for your viewing pleasure!</p>
+        </div>
+        <form method="post">
+        <br>
+        <label>RATINGS</label><br>
+           <input type="checkbox" name="G"/>&nbsp;G (General)&nbsp;&nbsp;
+           <input type="checkbox" name="PG"/>&nbsp;PG (Parental Guidance)&nbsp;&nbsp;
+           <input type="checkbox" name="PG-13"/>&nbsp;PG-13&nbsp;&nbsp;
+           <input type="checkbox" name="R"/>&nbsp;R (Restricted)&nbsp;&nbsp;
+        <br><br>
+        <label>GENRES</label><br>
+            <input type="checkbox" name="action"/>&nbsp;Action&nbsp;&nbsp;
+            <input type="checkbox" name="adventure"/>&nbsp;Adventure&nbsp;&nbsp;
+            <input type="checkbox" name="adventure"/>&nbsp;Animation&nbsp;&nbsp;
+            <input type="checkbox" name="comedy"/>&nbsp;Comedy&nbsp;&nbsp;
+            <input type="checkbox" name="crime"/>&nbsp;Crime&nbsp;&nbsp;<br>
+            <input type="checkbox" name="drama"/>&nbsp;Drama&nbsp;&nbsp;
+            <input type="checkbox" name="drama"/>&nbsp;Fantasy&nbsp;&nbsp;
+            <input type="checkbox" name="drama"/>&nbsp;Fiction&nbsp;&nbsp;
+            <input type="checkbox" name="drama"/>&nbsp;Horror&nbsp;&nbsp;
+            <input type="checkbox" name="drama"/>&nbsp;Mystery&nbsp;&nbsp;<br>
+            <input type="checkbox" name="drama"/>&nbsp;Political&nbsp;&nbsp;
+            <input type="checkbox" name="drama"/>&nbsp;Romance&nbsp;&nbsp;
+            <input type="checkbox" name="drama"/>&nbsp;Thriller&nbsp;&nbsp;
+            <input type="checkbox" name="drama"/>&nbsp;Science Fiction&nbsp;&nbsp;
+        <br><br>
+        <label>ACTORS</label><br>
+           <input type="text" name="actor1"/>&nbsp;
+                <input type="text" name="actor4"/><br>
+           <input type="text" name="actor2"/>&nbsp;
+                <input type="text" name="actor5"/><br>
+           <input type="text" name="actor3"/>&nbsp;
+                <input type="text" name="actor6"/>
+        <br><br>
+        <label>DIRECTORS</label><br>
+             <input type="text" name="dir1"/><br>
+            <input type="text" name="dir2"/><br>
+            <input type="text" name="dir3"/>
+        <br><br>
+        <label>STUDIOS</label><br>
+             <input type="checkbox" name=""/>&nbsp;Warner Bros.&nbsp;&nbsp;
+             <input type="checkbox" name=""/>&nbsp;Sony Pictures&nbsp;&nbsp;
+             <input type="checkbox" name=""/>&nbsp;Walt Disney Studios&nbsp;&nbsp;
+             <input type="checkbox" name=""/>&nbsp;20th Century&nbsp;&nbsp;<br>
+             <input type="checkbox" name=""/>&nbsp;Universal Pictures&nbsp;&nbsp;
+             <input type="checkbox" name=""/>&nbsp;Paramount Pictures&nbsp;&nbsp;
+             <input type="checkbox" name=""/>&nbsp;Lionsgate Films&nbsp;&nbsp;
+        <br><br>
+        <label>LENGTH</label><br>
+             <input type="checkbox" name=""/>&nbsp;&lt; 60 min &nbsp;&nbsp;
+             <input type="checkbox" name=""/>&nbsp;60-90 min &nbsp;&nbsp;
+             <input type="checkbox" name=""/>&nbsp;90-120 min &nbsp;&nbsp;
+             <input type="checkbox" name=""/>&nbsp;&gt; 120 min &nbsp;&nbsp;
+        <br><br><br>
+        <button type="submit">SUBMIT</button>
+        </form>
+        <div class="flex-container"></div><!--end of flex-container-->
+
+{% endblock %}
