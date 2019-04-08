@@ -71,12 +71,12 @@ def forward_new_email(public_id, email):
     payload = {
         "email": email
     }
-    headers = {'content-type' : 'application/json'}
+    headers = {'content-type': 'application/json'}
     url = os.environ.get("USER_SERVICE_URL")
     print(url)
     try:
         print("before request")
-        response = requests.post(url+"/update-email/"+public_id, headers=headers, json=payload)
+        response = requests.put(url+"/update-email/"+public_id, headers=headers, json=payload)
         print("after request")
     except:
         print("i am inside catch block")
