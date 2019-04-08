@@ -79,14 +79,14 @@ def token_verification():
         data = jwt.decode(token, app.config['SECRET_KEY'])
         current_user = Auth.query.filter_by(public_id=data['public_id'])
     except:
-        return jsonify({'message': 'Token is invalid!'}), 401
+        return jsonify({'message': 'Token expired!'}), 401
     return jsonify({"code": 200, "msg": "token has been verified successfully!",
                     'current_user_info': {
                         'email': current_user.first().email,
                         'public_id': current_user.first().public_id,
-                        'admin': current_user.first().admin
-                        },
-                    'user_token': token
+                        'admin': current_user.first().admin,
+                        'user_token': token
+                        }
                     })
 
 
@@ -150,3 +150,32 @@ def login():
         return jsonify({'token': token.decode('UTF-8')})
 
     return make_response("Could not verify", 401, {"WWW-Authenticate": "Basic realm='Login required!'"})
+
+
+@authView.route("/auth/promote/<user_id>", methods={"PUT"})
+def promote(user_id):
+    user = Auth.query.filter_by(public_id=user_id).first()
+    if user is None:
+        return make_response(jsonify({"code": 404,
+                                      "msg": "Promotion failed, user not found."}), 404)
+    user.admin = True
+    try:
+        db.session.commit()
+    except sqlalchemy.exc.SQLAlchemyError as error:
+        return make_response(jsonify({"code": 404, "msg": str(error)}), 404)
+    return jsonify({"code": 200, "msg": "Promote success"})
+
+
+@authView.route("/auth/delete/<user_id>", methods={"DELETE"})
+@token_required
+def delete_user_from_auth(user_id):
+    user = Auth.query.filter_by(public_id=user_id).first()
+    if user is None:
+        return make_response(jsonify({"code": 404,
+                                      "msg": "Delete failed, user not found."}), 404)
+    db.session.delete(user)
+    try:
+        db.session.commit()
+    except sqlalchemy.exc.SQLAlchemyError as error:
+        return make_response(jsonify({"code": 404, "msg": str(error)}), 404)
+    return jsonify({"code": 200, "msg": "Delete success"})
