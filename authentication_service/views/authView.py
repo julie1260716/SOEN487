@@ -74,16 +74,16 @@ def token_verification():
     if 'x-access-token' in request.headers:
         token = request.headers['x-access-token']
     if not token:
-        return jsonify({'message' : 'Token is missing'}), 401
+        return jsonify({'message': 'Token is missing'}), 401
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'])
         current_user = Auth.query.filter_by(public_id=data['public_id'])
     except:
-        return jsonify({'message' : 'Token is invalid!'}), 401
+        return jsonify({'message': 'Token is invalid!'}), 401
     return jsonify({"code": 200, "msg": "token has been verified successfully!",
                     'current_user_info': {
-                        'email': current_user.email,
-                        'public_id': current_user.public_id
+                        'email': current_user.first().email,
+                        'public_id': current_user.first().public_id
                         },
                     'user_token': token
                     })
