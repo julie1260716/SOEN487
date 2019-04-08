@@ -83,7 +83,8 @@ def token_verification():
     return jsonify({"code": 200, "msg": "token has been verified successfully!",
                     'current_user_info': {
                         'email': current_user.first().email,
-                        'public_id': current_user.first().public_id
+                        'public_id': current_user.first().public_id,
+                        'admin': current_user.first().admin
                         },
                     'user_token': token
                     })
