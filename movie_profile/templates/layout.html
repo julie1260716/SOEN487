@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="UTF-8">
+        <title>Home Page</title>
+        <meta name="description" content="SOEN 487 Project Homepage.">
+
+        {# The head block is designed to load css files #}
+        {% block head %}{% endblock %}
+
+    </head>
+    <body>
+        <h1>CINEM<span>ADDICT</span></h1>
+        {% include "navbar.html" %}
+
+        {% block content %}{% endblock %}
+
+        {% include "footer.html" %}
+
+        <!-- Load JS files at the end -->
+    </body>
+</html>

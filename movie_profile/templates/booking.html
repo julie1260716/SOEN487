@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block head %}
+    <!-- Explanation for static files: http://flask.pocoo.org/docs/1.0/tutorial/static/ -->
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+{% endblock %}
+{% block content %}
+    <div class="booking-box-t1">
+        <h2 class="booking-h2">Book Your Tickets Now!</h2>
+        <form action="/ticket-booking" method="post">
+            <div class="booking-box-t2">
+                <label>
+                    <i class="fas fa-film"></i> &nbsp; Movie Name: <br />
+                    <input class="booking-input" type="text" placeholder="Type or Select Movie" name="movie_name">
+                </label><br />
+                <label>
+                    <i class="fas fa-map-marker-alt"></i> &nbsp; Location: <br />
+                    <input class="booking-input" type="text" placeholder="Search by City" name="theater_loc">
+                </label><br />
+                <label>
+                    <i class="far fa-calendar-alt"></i> &nbsp; Select Date: <br />
+                    <input class="booking-input" type="text" placeholder="Select Show Time" name="show_time">
+                </label><br />
+            </div><br />
+            <input type="submit" value="Book the ticket" class="booking-btn">
+        </form>
+    </div>
+{% endblock %}
+
