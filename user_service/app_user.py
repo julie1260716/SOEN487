@@ -33,6 +33,9 @@ def page_not_found(e):
 def index():
     return render_template("homepage.html")
 
+# @app.route('/signup.html')
+# def signup():
+#     return render_template("signup.html")
 
 """
 # This is an example of using movie_profile template for movie service's use
