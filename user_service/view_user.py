@@ -143,7 +143,7 @@ def update_user(current_user, user_id):
     return jsonify({"code": 200, "msg": "update success"})
 
 @users_blueprint.route("/user/update-email/<user_id>", methods={"PUT"})
-def update_user(user_id):
+def update_email(user_id):
     """update email from auth service"""
     email = request.get_json()['email']
     user = User.query.filter_by(public_id=user_id).first()
