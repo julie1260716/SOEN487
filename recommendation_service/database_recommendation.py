@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from movie_service import database_movie
 
 # Define mysql database connection string
 DATABASE_URI = "mysql+mysqlconnector://root:Sci123456@localhost/RecommendationDB"
@@ -6,7 +7,8 @@ DATABASE_URI = "mysql+mysqlconnector://root:Sci123456@localhost/RecommendationDB
 # Initialize SQLAlchemy with no settings
 db = SQLAlchemy()
 
-# mysql-> recommendation table
+
+# mysql-> Recommendation table
 class Recommendation(db.Model):
     """
     ** The Recommendation table maps specific users via user_id to their recommended movies, via the movie_id.
@@ -39,7 +41,8 @@ def init_recommendation_table():
     # TODO: write code to automatically populate the recommendation table based on user's profile
     db.session.add(Recommendation(user_id=1, movie_id=1))
     db.session.add(Recommendation(user_id=1, movie_id=2))
-    db.session.add(Recommendation(user_id=2, movie_id=2))
-    db.session.add(Recommendation(user_id=3, movie_id=3))
+    db.session.add(Recommendation(user_id=2, movie_id=3))
+    db.session.add(Recommendation(user_id=3, movie_id=1))
     db.session.commit()
+
 
