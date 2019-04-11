@@ -16,7 +16,7 @@ class Recommendation(db.Model):
       user_id: an unique id to locate a recommendation
       movie_id: this movie name column will be populated with the data fetched from movie service
     """
-    user_id = db.Column(db.Integer, db.ForeignKey(""), nullable=False)
+    profile_id = db.Column(db.Integer, db.ForeignKey(""), nullable=False)
     movie_id = db.Column(db.Integer, db.ForeignKey(""), nullable=False)
 
     def __repr__(self):
