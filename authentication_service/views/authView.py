@@ -147,12 +147,12 @@ def sign_up():
 
 @authView.route("/auth/login", methods={"POST"})
 def login():
-    username = request.form.get('username')
+    user_email = request.form.get('user_email')
     password = request.form.get('password')
-    if not username or not password:
+    if not user_email or not password:
         return make_response("Could not verify", 401, {"WWW-Authenticate" : "Basic realm='Login required!'"})
 
-    user = Auth.query.filter_by(email=username).first()
+    user = Auth.query.filter_by(email=user_email).first()
 
     if not user:
         return make_response("Could not verify", 401, {"WWW-Authenticate": "Basic realm='Login required!'"})
