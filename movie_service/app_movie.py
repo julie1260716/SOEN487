@@ -22,9 +22,9 @@ def page_not_found(e):
     return render_template("404.html"), 404
 
 
-@app.route('/booking.html')
+@app.route('/profile.html')
 def movie_page():
-    return render_template("booking.html")
+    return render_template("profile.html")
 
 
 @app.route('/')

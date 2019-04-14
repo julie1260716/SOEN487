@@ -28,11 +28,21 @@
             </div>
             <form method="post">
             <br>
+
             <label>RATINGS</label><br>
                <input type="checkbox" name = "ratings" value="G"/>&nbsp;G (General)&nbsp;&nbsp;
                <input type="checkbox" name = "ratings" value="PG"/>&nbsp;PG (Parental Guidance)&nbsp;&nbsp;
                <input type="checkbox" name = "ratings" value="PG-13"/>&nbsp;PG-13&nbsp;&nbsp;
                <input type="checkbox" name = "ratings" value="R"/>&nbsp;R (Restricted)&nbsp;&nbsp;
+
+                {% if form.ratings.errors %}
+                    <ul class="footer-ul">
+                        {% for error in form.ratings.errors %}
+                        <li class="error-li">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
             <br><br>    
             <label>GENRES</label><br>
                 <input type="checkbox" name = "genres" value="action"/>&nbsp;Action&nbsp;&nbsp;
@@ -49,9 +59,27 @@
                 <input type="checkbox" name = "genres" value="drama"/>&nbsp;Romance&nbsp;&nbsp;
                 <input type="checkbox" name = "genres" value="drama"/>&nbsp;Thriller&nbsp;&nbsp;
                 <input type="checkbox" name = "genres" value="drama"/>&nbsp;Science Fiction&nbsp;&nbsp;
+
+                  {% if form.genres.errors %}
+                    <ul class="footer-ul">
+                        {% for error in form.genres.errors %}
+                        <li class="error-li">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
             <br><br>
             <label>ACTORS</label><br>
                <input type="text" name="actor1" required/>&nbsp;
+
+                {% if form.actor1.errors %}
+                    <ul class="footer-ul">
+                        {% for error in form.actor1.errors %}
+                        <li class="error-li">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
                     <input type="text" name="actor4"/><br>
                <input type="text" name="actor2"/>&nbsp;
                     <input type="text" name="actor5"/><br>
@@ -60,6 +88,15 @@
             <br><br>    
             <label>DIRECTORS</label><br>
                  <input type="text" name="dir1" required/><br>
+
+                 {% if form.director1.errors %}
+                    <ul class="footer-ul">
+                        {% for error in form.director1.errors %}
+                        <li class="error-li">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
                 <input type="text" name="dir2"/><br>
                 <input type="text" name="dir3"/>
             <br><br>    
@@ -71,6 +108,14 @@
                  <input type="checkbox" name = "studios" value="Universal Pictures"/>&nbsp;Universal Pictures&nbsp;&nbsp;
                  <input type="checkbox" name = "studios" value="Paramount Pictures"/>&nbsp;Paramount Pictures&nbsp;&nbsp;
                  <input type="checkbox" name = "studios" value="Lionsgate Films"/>&nbsp;Lionsgate Films&nbsp;&nbsp;
+
+                {% if form.studios.errors %}
+                    <ul class="footer-ul">
+                        {% for error in form.studios.errors %}
+                        <li class="error-li">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
                 
             <br><br>   
             <label>LENGTH</label><br>
@@ -78,6 +123,15 @@
                  <input type="checkbox" name = "length" value="60-90 min"/>&nbsp;60-90 min &nbsp;&nbsp;
                  <input type="checkbox" name = "length" value="90-120 min"/>&nbsp;90-120 min &nbsp;&nbsp;
                  <input type="checkbox" name = "length" value="120 min"/>&nbsp;&gt; 120 min &nbsp;&nbsp;
+
+                {% if form.length.errors %}
+                    <ul class="footer-ul">
+                        {% for error in form.length.errors %}
+                        <li class="error-li">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
             <br><br><br>    
             <button type="submit">SUBMIT</button>	
             </form>

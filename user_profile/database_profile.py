@@ -29,14 +29,14 @@ class Profile(db.Model):
 
 # Defining a Profile form to check the validation of inputs
 class MovieProfileForm(FlaskForm):
-    ratingG = self.request.get('ratings', allow_multiple=True)
-    genreAction = self.request.get('genres', allow_multiple=True)
-    actor1 = StringField("actor1", validators=[DataRequired(), Length(max=255)])
+    ratingG = self.request.get('ratings', allow_multiple=True, validators=DataRequired(message="Rating is required"))
+    genreAction = self.request.get('genres', allow_multiple=True, validators=DataRequired(message="Genre is required"))
+    actor1 = StringField("actor1", validators=[DataRequired(message="Actor name is required"), Length(max=255)])
     actor2 = StringField("actor2", validators=Length(max=255))
-    director1 = StringField("director1", validators=[DataRequired(), Length(max=255)])
+    director1 = StringField("director1", validators=[DataRequired(message="Director name is required"), Length(max=255)])
     director2 = StringField("director2", validators=Length(max=255))
-    studiosWarner = self.request.get('studios', allow_multiple=True)
-    lengthLess60 = self.request.get('length', allow_multiple=True)
+    studiosWarner = self.request.get('studios', allow_multiple=True, validators=DataRequired(message="Studio is required"))
+    lengthLess60 = self.request.get('length', allow_multiple=True, validators=DataRequired(message="Length is required"))
 
 
 # An auxiliary function convert row to dictionary form

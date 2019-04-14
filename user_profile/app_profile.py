@@ -26,8 +26,6 @@ def page_not_found(e):
 def profile_page():
     form = MovieProfileForm()
     if form.validate_on_submit():
-        # showing a message to user after submitting a form
-        # flash('Profile requested')
         return redirect('/homepage.html')
     return render_template("profile.html", title='YOUR MOVIE PROFILE', form=form)
 
