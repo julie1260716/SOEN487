@@ -1,7 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
+import uuid
 
 # Define mysql database connection string
-DATABASE_URI = "mysql+pymysql://root:@localhost/soen487project"
+DATABASE_URI = "mysql+mysqlconnector://root:Sci123456@localhost/UserDB"
 
 # Initialize SQLAlchemy with no settings
 db = SQLAlchemy()
@@ -23,7 +24,7 @@ class User(db.Model):
     public_id = db.Column(db.String(50), unique=True)
     fname = db.Column(db.String(100), nullable=False)
     lname = db.Column(db.String(100), nullable=False)
-    birthday = db.Column(db.DateTime, nullable=False)
+    birthday = db.Column(db.Date, nullable=False)
     email = db.Column(db.String(100), nullable=False)
     phone = db.Column(db.String(100), nullable=False)
     address = db.Column(db.Text(), nullable=True)
@@ -39,4 +40,38 @@ def row2dict(row):
     return {col.name: str(getattr(row, col.name)) for col in row.__table__.columns}
 
 
+# Initial database for ticket booking service
+def init_database():
+    db.drop_all()
+    db.create_all()
+    # init_user_table()
 
+
+# Populate the ticket table
+def init_user_table():
+    # Populate ticket table (hard coded version for testing purpose)
+    db.session.add(User(public_id=str(uuid.uuid4()),
+                        fname="Jennifer",
+                        lname="Williams",
+                        birthday="1988-05-19",
+                        email="JenniferTWilliams@rhyta.com",
+                        phone="209-752-1056",
+                        address="1613 Freed Drive"))
+
+    db.session.add(User(public_id=str(uuid.uuid4()),
+                        fname="Carlos",
+                        lname="Bartlett",
+                        birthday="1978-03-29",
+                        email="CarlosABartlett@jourrapide.com",
+                        phone="321-328-4916",
+                        address="2754 Terry Lane"))
+
+    db.session.add(User(public_id=str(uuid.uuid4()),
+                        fname="Lester",
+                        lname="James",
+                        birthday="1988-01-13",
+                        email="LesterAJames@armyspy.com",
+                        phone="337-536-9002",
+                        address="2995 Sarah Drive"))
+
+    db.session.commit()

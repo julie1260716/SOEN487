@@ -2,28 +2,140 @@
 {% block head %}
     <!-- Explanation for static files: http://flask.pocoo.org/docs/1.0/tutorial/static/ -->
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/ticketbooking_stylesheet.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 {% endblock %}
 {% block content %}
     <div class="booking-box-t1">
+        {% if alertMsg == 'success' %}
+        <div class="alert success" id="success_fadeout">
+            <span class="closebtn">&times;</span>
+            <strong>You have successfully booked the ticket!</strong>
+        </div>
+        {% elif alertMsg == 'warning' %}
+        <div class="alert warning" id="warning_fadeout">
+            <span class="closebtn">&times;</span>
+            <strong>Cannot find the ticket you are looking for.</strong>
+        </div>
+        {% endif %}
         <h2 class="booking-h2">Book Your Tickets Now!</h2>
         <form action="/ticket-booking" method="post">
             <div class="booking-box-t2">
                 <label>
                     <i class="fas fa-film"></i> &nbsp; Movie Name: <br />
                     <input class="booking-input" type="text" placeholder="Type or Select Movie" name="movie_name">
-                </label><br />
+                    {% if form.movie_name.errors %}
+                        <ul class="footer-ul">
+                            {% for error in form.movie_name.errors %}
+                                <li class="error-li">{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </label>
                 <label>
                     <i class="fas fa-map-marker-alt"></i> &nbsp; Location: <br />
-                    <input class="booking-input" type="text" placeholder="Search by City" name="theater_loc">
-                </label><br />
+                    <input class="booking-input" type="text" placeholder="Search by Theatre Location" name="theater_loc">
+                    {% if form.theater_loc.errors %}
+                        <ul class="footer-ul">
+                            {% for error in form.theater_loc.errors %}
+                                <li class="error-li">{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </label>
                 <label>
                     <i class="far fa-calendar-alt"></i> &nbsp; Select Date: <br />
-                    <input class="booking-input" type="text" placeholder="Select Show Time" name="show_time">
-                </label><br />
+                    <input class="booking-input" type="date" placeholder="Select Date" name="show_date">
+                    {% if form.show_date.errors %}
+                        <ul class="footer-ul">
+                            {% for error in form.show_date.errors %}
+                                <li class="error-li">{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </label>
+                <label>
+                    <i class="far fa-clock"></i> &nbsp; Select Time: <br />
+                    <select class="booking-select" name="show_time" >
+                        <option>17:30</option>
+                        <option>19:00</option>
+                        <option>20:30</option>
+                        <option>22:00</option>
+                    </select>
+                    {% if form.show_time.errors %}
+                        <ul class="footer-ul">
+                            {% for error in form.show_time.errors %}
+                                <li class="error-li">{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </label>
+                <label>
+                    <i class="fas fa-ticket-alt"></i> &nbsp; Ticket Number: <br />
+                    <input class="booking-input" type="number" placeholder="1" name="ticket_qty" min="1">
+                    {% if form.ticket_qty.errors %}
+                        <ul class="footer-ul">
+                            {% for error in form.ticket_qty.errors %}
+                                <li class="error-li">{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </label>
             </div><br />
             <input type="submit" value="Book the ticket" class="booking-btn">
         </form>
     </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h3>Authentication Request</h3>
+            </div>
+            <div class="modal-body">
+                <h5>To book movie tickets, please login in first.</h5>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Get the modal
+    var modal = document.getElementById('myModal');
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    </script>
+
+    {% if user_not_login %}
+    <script>
+        var modal = document.getElementById('myModal');
+        modal.style.display = "block";
+    </script>
+    {% endif %}
+
+    {% if alertMsg == 'success' or alertMsg == 'warning' %}
+    <script>
+        $(document).ready(function() {
+          $('#success_fadeout').fadeOut(2500);
+          $('#warning_fadeout').fadeOut(2500); // 2.5 seconds x 1000 milisec = 2500 milisec
+        });
+    </script>
+    {% endif %}
+
 {% endblock %}
 

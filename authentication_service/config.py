@@ -1,6 +1,7 @@
 class Config(object):
     # config database
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:auth@192.168.1.105:3306/authentication'
+    # SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:auth@192.168.1.105:3306/authentication'
+    SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://root:Sci123456@localhost/AuthenticationDB'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_POOL_TIMEOUT = 28800
     SQLALCHEMY_POOL_RECYCLE = 1000
@@ -9,6 +10,7 @@ class Config(object):
     # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     # app.config['SQLALCHEMY_POOL_TIMEOUT'] = 800
     # app.config['SQLALCHEMY_POOL_RECYCLE'] = 100
+
 
 class ProdConfig(Config):
     pass

@@ -1,5 +1,5 @@
-from main import app
-from models import db, Auth
+from authentication_service.main import app
+from authentication_service.models import db, Auth
 
 
 @app.shell_context_processor

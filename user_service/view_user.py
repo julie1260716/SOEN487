@@ -1,9 +1,10 @@
 from flask import jsonify, request, make_response, render_template, redirect
-from database_user import db, row2dict, User
+from user_service.database_user import db, row2dict, User
 from flask import Blueprint
 import sqlalchemy.exc
 from functools import wraps
 import requests
+
 
 users_blueprint = Blueprint("userView", __name__)
 # that url may be changed later on
@@ -43,14 +44,8 @@ def token_required(func):
 @users_blueprint.route("/user", methods={"POST"})
 def create_user():
     """create new user profile"""
-    # public_id = request.form.get("public_id")
-    # first_name = request.form.get("first_name")
-    # last_name = request.form.get("last_name")
-    # email = request.form.get("email")
-    # date_of_birth = request.form.get("date_of_birth")
-    # phone_number = request.form.get("phone_number")
-    # address = request.form.get("address")
     data = request.get_json()
+
     public_id = data['public_id']
     first_name = data['first_name']
     last_name = data['last_name']
@@ -58,6 +53,7 @@ def create_user():
     date_of_birth = data['date_of_birth']
     phone_number = data['phone_number']
     address = data['address']
+
     # address could be none, other fields are mandatory
     if first_name is None or last_name is None or email is None or public_id is None \
             or date_of_birth is None or phone_number is None:
@@ -76,17 +72,17 @@ def create_user():
 
 @users_blueprint.route("/user")
 @token_required
-def get_all_tickets(current_user):
+def get_all_users(current_user):
     """
     Return information for all users stored in the database,
     only admin have the permission to delete user
     """
 
-    if current_user["admin"] == False:
-        return make_response(jsonify({"code": 403, "msg": "You don't have the permission to delete the profile"}),
+    if not current_user["admin"]:
+        return make_response(jsonify({"code": 403, "msg": "You don't have the permission to view the profile"}),
                              403)
     user_list = User.query.all()
-    return jsonify([row2dict(ticket) for ticket in user_list])
+    return jsonify([row2dict(user) for user in user_list])
 
 
 @users_blueprint.route("/user/<user_id>")
@@ -96,11 +92,15 @@ def get_user(current_user, user_id):
     if current_user["public_id"] != user_id:
         return make_response(jsonify({"code": 403, "msg": "You don't have the permission to view the requested URL"}),
                              403)
+
     user = User.query.filter_by(public_id=user_id).first()
+
     if user:
-        # return jsonify(row2dict(user))
-        userinfo = row2dict(user)
-        return render_template("user_profile.html", user=userinfo)
+        if request.headers['Content-Type'] == 'application/json':
+            return jsonify(row2dict(user))
+        else:
+            userinfo = row2dict(user)
+            return render_template("user_profile.html", user=userinfo)
     else:
         return make_response(jsonify({"code": 404, "msg": "Cannot find user profile with this user_id."}), 404)
 
@@ -142,6 +142,7 @@ def update_user(current_user, user_id):
         return make_response(jsonify({"code": 404, "msg": str(error)}), 404)
     return jsonify({"code": 200, "msg": "update success"})
 
+
 @users_blueprint.route("/user/update-email/<user_id>", methods={"PUT"})
 def update_email(user_id):
     """update email from auth service"""
@@ -162,7 +163,7 @@ def update_email(user_id):
 @token_required
 def delete_user(current_user, user_id):
     """only admin have the permission to delete user"""
-    if current_user["admin"] == False:
+    if not current_user["admin"]:
         return make_response(jsonify({"code": 403, "msg": "You don't have the permission to delete the profile"}),
                              403)
     user = User.query.filter_by(public_id=user_id).first()
@@ -184,7 +185,7 @@ def delete_user(current_user, user_id):
 def forward_delete_auth(token, public_id):
     url = AUTH_URL_DELETE
     headers = {'content-type': 'application/json',
-               'x-access-token': token }
+               'x-access-token': token}
     # print(url)
     try:
         print("before request")

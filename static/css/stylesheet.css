@@ -99,6 +99,10 @@ nav {
   float: left;
 }
 
+.error-li {
+    color: red;
+}
+
 li a {
   display: block;
   color: white;
@@ -232,6 +236,15 @@ label {
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 3px;
+}
+
+.booking-select {
+    width: 798px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: white;
+    height: 37px;
 }
 
 .booking-btn {

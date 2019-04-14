@@ -1,26 +1,17 @@
 from flask import Flask, jsonify, make_response, request, Blueprint
-from models import Auth, row2dict, db
-# from main import app
-from dotenv import load_dotenv
-import os
+from werkzeug.security import generate_password_hash, check_password_hash
+from authentication_service.models import Auth, db
+from functools import wraps
 import sqlalchemy
 import uuid
-from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
-import json
 import datetime
-from functools import wraps
 import requests
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'here is my secret key'
+app.config['USER_SERVICE_URL'] = 'http://127.0.0.1:5001/user'
 authView = Blueprint("authView", __name__)
-
-
-# load dotenv in the base root
-APP_ROOT = os.path.join(os.path.dirname(__file__), '..')   # refers to application_top
-dotenv_path = os.path.join(APP_ROOT, '.env')
-load_dotenv(dotenv_path)
 
 
 def token_required(func):
@@ -53,16 +44,12 @@ def forward_user_info(public_id, first_name, last_name, email, date_of_birth, ph
         "phone_number": phone_number,
         "address": address
     }
-    headers = {'content-type' : 'application/json'}
-    url = os.environ.get("USER_SERVICE_URL")
-    print(url)
+    headers = {'content-type': 'application/json'}
+    url = app.config['USER_SERVICE_URL']
     try:
-        print("before request")
         response = requests.post(url, headers=headers, json=payload)
-        print("after request")
     except:
-        print("i am inside catch block")
-        # return jsonify(dict(code=404, msg="whoops! something went wrong!!"))
+        # print("i am inside catch block")
         return make_response(jsonify({"code": 404, "msg": "bad request"}), 404)
     return make_response(jsonify({"code": 200, "msg": "success"}), 200)
 
@@ -72,15 +59,10 @@ def forward_new_email(public_id, email):
         "email": email
     }
     headers = {'content-type': 'application/json'}
-    url = os.environ.get("USER_SERVICE_URL")
-    print(url)
+    url = app.config['USER_SERVICE_URL']
     try:
-        print("before request")
         response = requests.put(url+"/update-email/"+public_id, headers=headers, json=payload)
-        print("after request")
     except:
-        print("i am inside catch block")
-        # return jsonify(dict(code=404, msg="whoops! something went wrong!!"))
         return make_response(jsonify({"code": 404, "msg": "bad request"}), 404)
     return make_response(jsonify({"code": 200, "msg": "success"}), 200)
 
@@ -147,12 +129,12 @@ def sign_up():
 
 @authView.route("/auth/login", methods={"POST"})
 def login():
-    username = request.form.get('username')
+    user_email = request.form.get('user_email')
     password = request.form.get('password')
-    if not username or not password:
-        return make_response("Could not verify", 401, {"WWW-Authenticate" : "Basic realm='Login required!'"})
+    if not user_email or not password:
+        return make_response("Could not verify", 401, {"WWW-Authenticate": "Basic realm='Login required!'"})
 
-    user = Auth.query.filter_by(email=username).first()
+    user = Auth.query.filter_by(email=user_email).first()
 
     if not user:
         return make_response("Could not verify", 401, {"WWW-Authenticate": "Basic realm='Login required!'"})
@@ -172,7 +154,7 @@ def login():
 
 @authView.route("/auth/promote/<user_id>", methods={"PUT"})
 @token_required
-def promote(current_user, user_id):
+def promote(user_id):
     user = Auth.query.filter_by(public_id=user_id).first()
     if user is None:
         return make_response(jsonify({"code": 404,
@@ -187,7 +169,7 @@ def promote(current_user, user_id):
 
 @authView.route("/auth/change-password/<user_id>", methods={"PUT"})
 @token_required
-def change_password(current_user, user_id):
+def change_password(user_id):
     password = request.form.get('password')
     user = Auth.query.filter_by(public_id=user_id).first()
     if password is None:
@@ -207,7 +189,7 @@ def change_password(current_user, user_id):
 
 @authView.route("/auth/change-email/<user_id>", methods={"PUT"})
 @token_required
-def change_email(current_user, user_id):
+def change_email(user_id):
     email = request.form.get('email')
     user = Auth.query.filter_by(public_id=user_id).first()
     if email is None:
@@ -231,7 +213,7 @@ def change_email(current_user, user_id):
 
 @authView.route("/auth/delete/<user_id>", methods={"DELETE"})
 @token_required
-def delete_user_from_auth(current_user, user_id):
+def delete_user_from_auth(user_id):
     user = Auth.query.filter_by(public_id=user_id).first()
     if user is None:
         return make_response(jsonify({"code": 404,

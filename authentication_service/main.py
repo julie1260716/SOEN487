@@ -1,35 +1,20 @@
-from flask import Flask, jsonify, make_response
-from config import Config
-from dependency import db
-from views.authView import authView
+from flask import Flask
+from authentication_service.config import Config
+from authentication_service.dependency import db, init_database
+from authentication_service.views.authView import authView
 
 app = Flask(__name__)
 app.config.from_object(Config)
+# Note: 'db.app = app' is add to fix 'RuntimeError: application not registered on db instance and no
+# application bound to current context'
+db.app = app
 db.init_app(app)
 
 with app.app_context():
-    db.create_all()
-
+    init_database()
 
 app.register_blueprint(authView)
-#
-# from views.productView import productView
-# app.register_blueprint(productView)
-#
-# from views.cartView import cartView
-# app.register_blueprint(cartView)
-
-
-@app.errorhandler(404)
-def page_not_found(e):
-    return make_response(jsonify({"code": 404, "msg": "404: Not Found"}), 404)
-
-
-@app.route('/')
-def soen487_a1():
-    return jsonify({"title": "SOEN487 Assignment 1",
-                    "student": {"id": "Your id#", "name": "Your name"}})
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5000, debug=True)

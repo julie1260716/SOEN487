@@ -1,4 +1,4 @@
-from dependency import db
+from authentication_service.dependency import db
 
 
 def row2dict(row):
