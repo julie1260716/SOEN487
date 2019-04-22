@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block head %}
+    <!-- Explanation for static files: http://flask.pocoo.org/docs/1.0/tutorial/static/ -->
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+{% endblock %}
+{% block content %}
+    <div>
+        <h2 class="base-h2">Log In</h2>
+    </div>
+    <div id=container>
+      <form action="/auth/login" method="post">
+        <label>USERNAME</label>
+        <br>
+            <input type = "text" name = "user_email"/>
+         <br><br>
+         <label>PASSWORD</label><br>
+            <input type = "password" name = "password" />
+        <br>
+        <span class = "button"><input type="submit" name="login_form" value="LOGIN"/></span>
+      </form>
+    </div>
+{% endblock %}

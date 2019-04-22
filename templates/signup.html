@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block head %}
+    <!-- Explanation for static files: http://flask.pocoo.org/docs/1.0/tutorial/static/ -->
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+{% endblock %}
+{% block content %}
+    <div>
+        <h2 class="base-h2">Sign Up today!</h2>
+    </div>
+
+    <div class="flex-container-signup">
+        <div id="container">
+            <form method="post" action="/auth/sign-up">
+                <label>First Name</label><br>
+                <input type = "text" name = "fistName"/><br>
+                <!--will output the error here-->
+                <span class = "error"></span>
+
+                <label>Date of Birth (yyyy-mm-dd)</label><br>
+                <input type="text" name="dateOfBirth"><br>
+                <!--will output the error here-->
+                <span class = "error"></span>
+
+                <label>Phone Number</label><br>
+                <input type="tel" name="phoneNumber"><br>
+                <!--will output the error here-->
+                <span class = "error"></span>
+
+                <label>Password</label><br>
+                <input type="password" name="password"><br>
+                <!--will output the error here-->
+                <span class = "error"></span><br>
+
+                <!--SUBMIT BUTTON IS HERE-->
+                <button type="submit">SUBMIT</button>
+
+                <div style="padding-top:2em;"></div>
+                <label>Last Name</label><br>
+                <input type = "text" name = "lastName"/><br>
+                <!--will output the error here-->
+                <span class = "error"></span>
+
+                <label>Email Address</label><br>
+                <input type="text" name="email"><br>
+                <!--will output the error here-->
+                <span class = "error"></span>
+
+                <label>Address</label><br>
+                <input type="text" name="address"><br>
+                <!--will output the error here-->
+                <span class = "error"></span>
+            </form>
+        </div>
+    </div><!--end of flex-container-signup-->
+{% endblock %}
