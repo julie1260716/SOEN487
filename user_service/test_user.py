@@ -16,7 +16,7 @@ class TestUser(unittest.TestCase):
                         birthday="1988-05-19",
                         email="JenniferTWilliams@rhyta.com",
                         phone="209-752-1056",
-                        address="1613 Freed Drive"))
+                        address="1613 Freed Drive")
         self.db.session.add(User(public_id="abc111",
                         fname="Carlos",
                         lname="Bartlett",
