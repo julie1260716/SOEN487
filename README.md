@@ -53,6 +53,7 @@ python SOEN487/ticket_booking_service/app_ticket_booking.py
 
 &nbsp;
 
+
 # Contributors & Contact Information
 ### **Team Members (team_x)**
 
@@ -74,8 +75,8 @@ The table below record the responsibilities for each teammate
 | Chen Zhuang    | Ticket Booking Service, Integral Test, Documentation |
 | Julie Merlin   |                                                      |
 | Marzie Shafiee |                                                      |
-| Yang An        |                                                      |
-| Bochuan An     |                                                      |
+| Yang An        | User Service, unit test, database diagram                                                      |
+| Bochuan An     | Authentication service, unit test, documentation                                                  |
 
 &nbsp;
 

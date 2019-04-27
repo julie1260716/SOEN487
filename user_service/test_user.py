@@ -36,7 +36,7 @@ class TestUser(unittest.TestCase):
     def test_create_user(self):
 
         # send the post request with the payload and check the response status code
-        response = self.app.put("/user", data={"public_id":"jdidk123","first_name":"yang",
+        response = self.app.post("/user", data={"public_id":"jdidk123","first_name":"yang",
                                                "last_name":"an",
                                                "date_of_birth":"1988-05-19",
                                                "email":"JenniferTWilliams@rhyta.com",
@@ -52,7 +52,7 @@ class TestUser(unittest.TestCase):
     # Testing create user without first_name
     def test_create_user_missing_info(self):
         # send the post request with the payload and check the response status code
-        response = self.app.put("/user", data={"public_id":"jdidk123","first_name":"",
+        response = self.app.post("/user", data={"public_id":"jdidk123","first_name":"",
                                                "last_name":"an",
                                                "date_of_birth":"1988-05-19",
                                                "email":"JenniferTWilliams@rhyta.com",
