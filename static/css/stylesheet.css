@@ -17,6 +17,15 @@ body {
     padding: 4em 2em 4em;
 }
 
+.flex-container-2 {
+    text-align: left;
+    display: inline-flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 0px 20px;
+}
 
 .flex-container { 
     text-align: center;

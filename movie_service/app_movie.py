@@ -88,4 +88,4 @@ def index():
 
 if __name__ == '__main__':
     # set different port number to differentiate services deployed on the same local server
-    app.run(port=5003, debug=True)
+    app.run(port=5002, debug=True)

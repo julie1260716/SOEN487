@@ -29,8 +29,13 @@ def index():
     return render_template("homepage.html")
 
 
+@app.route('/login.html')
+def login_page():
+    return render_template("login.html")
+
+
 @app.route('/signup.html')
-def signup():
+def signup_page():
     return render_template("signup.html")
 
 

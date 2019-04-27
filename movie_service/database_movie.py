@@ -177,8 +177,8 @@ def init_studio_table():
 
 
 def init_genreof_table():
+    db.session.add(GenreOfMovie(movie_id=1, genre_id=1))
     db.session.add(GenreOfMovie(movie_id=1, genre_id=2))
-    db.session.add(GenreOfMovie(movie_id=1, genre_id=3))
     db.session.add(GenreOfMovie(movie_id=4, genre_id=3))
     db.session.add(GenreOfMovie(movie_id=4, genre_id=4))
     db.session.commit()
@@ -203,7 +203,7 @@ def init_directorof_table():
 
 
 def init_studioof_table():
-    db.session.add(StudioOf(movie_id=1, studio_id=3))
+    db.session.add(StudioOf(movie_id=1, studio_id=1))
     db.session.add(StudioOf(movie_id=4, studio_id=5))
     db.session.commit()
 

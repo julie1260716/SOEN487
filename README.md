@@ -51,6 +51,14 @@ For Ticket Booking Service
 python SOEN487/ticket_booking_service/app_ticket_booking.py
 ```
 
+Port Numeber
+- Authentication Service: 5000
+- User Service: 5001
+- Movie Service: 5002
+- User Profile Service: 5003
+- Recommendation Service: 5004
+- Ticket Booking Service: 5005
+
 &nbsp;
 
 
