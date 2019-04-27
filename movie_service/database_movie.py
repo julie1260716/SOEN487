@@ -123,7 +123,7 @@ def init_movie_table():
     # Populate movie table (HARD CODED version)
     # TODO: write code to automatically populate the movie table
     db.session.add(Movie(movie_id=1, movie_name="Frozen", movie_rating=1, movie_length=102))
-    db.session.add(Movie(movie_id=4, movie_name="The Grinch", movie_rating=1, movie_length=86))
+    db.session.add(Movie(movie_id=4, movie_name="Grinch", movie_rating=1, movie_length=86))
     db.session.commit()
 
 

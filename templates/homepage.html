@@ -10,55 +10,65 @@
     </div>
     <div class="flex-container">
         <div>
-            <a href="movies/frozen.html">
+            <a href="{{ url_for('movie_page', movie_name='frozen')}}">
                 <img src="{{ url_for('static', filename='images/frozen.jpg') }}" alt="Frozen movie poster">
             </a>
             <p class="movie_titles">Frozen</p>
             <p class="book">BOOK TICKETS ></p>
         </div>
         <div>
-            <a href="movies/incendies.html">
+            <a href="{{ url_for('movie_page', movie_name='incendies')}}">
                 <img src="{{ url_for('static', filename='images/incendies.jpg') }}" alt="Incendies movie poster">
             </a>
             <p class="movie_titles">Incendies</p>
             <p class="book">BOOK TICKETS ></p>
         </div>
         <div>
-            <a href="movies/escape.html">
+            <a href="{{ url_for('movie_page', movie_name='escape_room')}}">
                 <img src="{{ url_for('static', filename='images/escape_room.jpg') }}" alt="Escape Room movie poster">
             </a>
             <p class="movie_titles">Escape Room</p>
             <p class="book">BOOK TICKETS ></p>
         </div>
         <div>
-            <a href="movies/grinch.html">
+            <a href="{{ url_for('movie_page', movie_name='grinch')}}">
                 <img src="{{ url_for('static', filename='images/grinch.jpg') }}" alt="Grinch movie poster">
             </a>
             <p class="movie_titles">The Grinch</p>
             <p class="book">BOOK TICKETS ></p>
         </div>
         <div>
-            <img src="{{ url_for('static', filename='images/hangover.jpg') }}" alt="Hangover movie poster">
+            <a href="{{ url_for('movie_page', movie_name='hangover')}}">
+                <img src="{{ url_for('static', filename='images/hangover.jpg') }}" alt="Hangover movie poster">
+            </a>
             <p class="movie_titles">The Hangover</p>
             <p class="book">BOOK TICKETS ></p>
         </div>
         <div>
-            <img src="{{ url_for('static', filename='images/imitation.jpg') }}" alt="Imitation movie poster">
+            <a href="{{ url_for('movie_page', movie_name='imitation')}}">
+                <img src="{{ url_for('static', filename='images/imitation.jpg') }}" alt="Imitation movie poster">
+            </a>
             <p class="movie_titles">The Imitation Game</p>
             <p class="book">BOOK TICKETS ></p>
         </div>
         <div>
-            <img src="{{ url_for('static', filename='images/shutter_island.jpg') }}" alt="Shutter Island movie poster">
+            <a href="{{ url_for('movie_page', movie_name='shutter_island')}}">
+                <img src="{{ url_for('static', filename='images/shutter_island.jpg') }}" alt="Shutter Island movie poster">
+            </a>
             <p class="movie_titles">Shutter Island</p>
             <p class="book">BOOK TICKETS ></p>
         </div>
         <div>
-            <img src="{{ url_for('static', filename='images/harry_potter.jpg') }}" alt="Harry Potter movie poster">
+            <a href="{{ url_for('movie_page', movie_name='harry_potter')}}">
+                <img src="{{ url_for('static', filename='images/harry_potter.jpg') }}" alt="Harry Potter movie poster">
+            </a>
             <p class="movie_titles">Harry Potter: Deathly Hallows</p>
             <p class="book">BOOK TICKETS ></p>
         </div>
         <div>
-            <img src="{{ url_for('static', filename='images/ralph.jpg') }}" alt="Ralph movie poster">
+            <a href="{{ url_for('movie_page', movie_name='ralph')}}">
+                <img src="{{ url_for('static', filename='images/ralph.jpg') }}" alt="Ralph movie poster">
+            </a>
             <p class="movie_titles">Ralph Breaks the Internet</p>
             <p class="book">BOOK TICKETS ></p>
         </div>
