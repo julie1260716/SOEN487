@@ -131,7 +131,7 @@ The table below record the responsibilities for each teammate
 | -------------- | ---------------------------------------------------- |
 | Chen Zhuang    | Created Templates for User Interface, Ticket Booking Service, Part of Movie Service, Part of User Profile Service, Part of Recommendation Service, Integral Test, Documentation |
 | Julie Merlin   | Creation of User Interface (Website, HTML & CSS), Movie Service (and unit tests), User Profile Service (and unit tests), Recommendation Service (and unit tests), Creation of PowerPoint presentation and contribution to Final Documentation.                                               |
-| Marzie Shafiee | **not application at this time**                                              |
+| Marzie Shafiee | **not applicable at this time**                                              |
 | Yang An        | User Service, unit test, database diagram                                                      |
 | Bochuan An     | Authentication service, unit test, documentation                                                  |
 
