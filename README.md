@@ -1,5 +1,5 @@
 # **SOEN 487 Group Project**
-A group project created for course SOEN 487 Web Services and Applications. The implementation of the project follows the concept of micro services and it applies Flask micro framework.
+A group project created for course SOEN 487 Web Services and Applications. The implementation of the project follows the concept of microservices and it applies a Flask microframework.
 
 # Project Description
 The Cinema website will loosely simulate existing movie websites, such as “Cineplex.com”. The site’s functionalities will include Login, Signup, Movie service, User Profile Service, Ticket Booking services, and a Movie Recommendations service. The following diagram displays each mircroservice of the project is composed of and the associations between each microservice.
@@ -93,7 +93,7 @@ For Ticket Booking Service
 python SOEN487/ticket_booking_service/app_ticket_booking.py
 ```
 
-Port Numeber
+Port Number
 - Authentication Service: 5000
 - User Service: 5001
 - Movie Service: 5002
@@ -127,11 +127,11 @@ The following databases need to be created on MySQL server:
 # Task Breakdown
 The table below record the responsibilities for each teammate
 
-| Teammeate      | Tasks                                                |
+| Teammate      | Tasks                                                |
 | -------------- | ---------------------------------------------------- |
-| Chen Zhuang    | Ticket Booking Service, Part of Movie Service, Part of User Profile Service, Part of Recommendation Service, Integral Test, Documentation |
-| Julie Merlin   |                                                      |
-| Marzie Shafiee | Recommendation Service, unit test                                              |
+| Chen Zhuang    | Created Templates for User Interface, Ticket Booking Service, Part of Movie Service, Part of User Profile Service, Part of Recommendation Service, Integral Test, Documentation |
+| Julie Merlin   | Creation of User Interface (Website, HTML & CSS), Movie Service (and unit tests), User Profile Service (and unit tests), Recommendation Service (and unit tests), Creation of PowerPoint presentation and contribution to Final Documentation.                                               |
+| Marzie Shafiee | **not application at this time**                                              |
 | Yang An        | User Service, unit test, database diagram                                                      |
 | Bochuan An     | Authentication service, unit test, documentation                                                  |
 
@@ -144,8 +144,19 @@ As we want to make the most use of Flask framework and its extensions, it took u
 
 When it comes to the design of UI, we vacillated between whethere we should have a 'front controller' to dispatcher request to different microservices or we should allow each microsevice be reponsible for only certain, specific html pages. 
 
-Another thing we found very chanllenging is the design of integral test. Previously, we did the unit test for our own microservice. When we need the data coming from outside we just hard coded the data. However, for integral test, it does not only test the functionality of each microservice but also logic behind the interactions between microservices. This became even harder when there was a lack of communication between each teammate.
+Another thing we found very chanllenging is the design of integral test. Previously, we did the unit test for our own microservice. When we need the data coming from outside we just hard coded the data. However, for integral test, it does not only test the functionality of each microservice but also logic behind the interactions between microservices. This became even harder when there was a lack of communication between teammates.
 
+As with any team work project, some issues with communication and coordination amongst the team members. Our team was certainly not immune to these challenges. Lack of effective communication, not taking initiative, dealing with busy schedules and not being as organized as we should've been was a big pitfall for our team. In turn, the finished (or perhaps unfinished) product suffered. 
+
+For future considerations, we have devised a list of things to improve on:
+
+- Create more concrete plan as early as possible (document this as well)
+- Divide tasks formally between team members (also documented)
+- Time Management is key!!
+- Have more face-to-face team meetings (even though no one ever likes those)
+- Touch base more often on the project's progress or lack there of
+- Take more iniative 
+- Bribe the teacher more (oups, how did that get on the list..)
 
 
 
