@@ -4,12 +4,12 @@ A group project created for course SOEN 487 Web Services and Applications. The i
 # Project Description
 The Cinema website will loosely simulate existing movie websites, such as “Cineplex.com”. The site’s functionalities will include Login, Signup, Movie service, User Profile Service, Ticket Booking services, and a Movie Recommendations service. The following diagram displays each mircroservice of the project is composed of and the associations between each microservice.
 
-![Micro Services]()
+![Micro Services](https://github.com/julie1260716/SOEN487/blob/all-services/service_images/Microservices%20Diagram.png)
 
 **Authentication Service**  
 Authentication service, as the name suggests, it authenticate users for other microservices when the identify of an user needs to be confirmed. In this project, the authentication is implemented by using JWT token. 
 
-![Auth Service]()
+![Auth Service](https://github.com/julie1260716/SOEN487/blob/all-services/service_images/ticketbooking%20(login%20req).png)
 
 **User Service**  
 User service is responsible for recording all the necessary information related to a user (name, password, email address, etc.). All operation on the user data requires the request sender to be authenticated first.
@@ -18,7 +18,7 @@ User service is responsible for recording all the necessary information related 
 **Movie Service**  
 Movie service mainly takes charge of displaying information for different movies through an html template. It interacts with recommendation service when recommendation service provides recommended movies for an user.
 
-![Movie Service]()
+![Movie Service](https://github.com/julie1260716/SOEN487/blob/all-services/service_images/MovieProfile.png)
 
 **User Profile Service**  
 User profile is a special characteristic of our project. its role is to store a user's perference on movies such as the rating or genre of a movie. To achieve this functionality, users need to first fill in a form to provide their preference data. These data will be later on stored and updated. 
@@ -28,12 +28,12 @@ User profile is a special characteristic of our project. its role is to store a 
 **Recommendation Service**  
 Recommendation service works by interacting with movie service and user profie service. To recommend users the movies they will like, this service will call profile service to fetch the profile id for the current user and then fetch all the perferences associated with the profile id. After that recommendation service will call movie service to provide all the movies meet those peferences obtained from user profile service. At the end, the movie data obtained will be render through a html template designed for recommendation service.
 
-![Recommendation Service]()
+![Recommendation Service](https://github.com/julie1260716/SOEN487/blob/all-services/service_images/recommendation.png)
 
 **Ticket Booking Service**  
 Ticket Booking service allows users to order movie tickets based on the movie name, theatre location, show time and other criteria. Before a ticket booking operation is executed, the authentication of request sender is required.
 
-![Ticket Booking Service]()
+![Ticket Booking Service](https://github.com/julie1260716/SOEN487/blob/all-services/service_images/ticketbooking%20(UI).png)
 
 
 
