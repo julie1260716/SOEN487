@@ -16,8 +16,8 @@ class Recommendation(db.Model):
       user_id: an unique id to locate a recommendation
       movie_id: this movie name column will be populated with the data fetched from movie service
     """
-    user_id = db.Column(db.Integer, db.ForeignKey(""), nullable=False)
-    movie_id = db.Column(db.Integer, db.ForeignKey(""), nullable=False)
+    user_id = db.Column(db.Integer, primary_key=True)
+    movie_id = db.Column(db.Integer, primary_key=True)
 
     def __repr__(self):
         return "<Recommendation {} {}>".format(self.user_id, self.movie_id)
@@ -39,8 +39,8 @@ def init_database():
 def init_recommendation_table():
     # Populate recommendation table (HARD CODED version)
     # TODO: write code to automatically populate the recommendation table based on user's profile
-    db.session.add(Recommendation(user_id=1, movie_id=1))
-    db.session.add(Recommendation(user_id=1, movie_id=2))
+    # db.session.add(Recommendation(user_id=1, movie_id=1))
+    # db.session.add(Recommendation(user_id=1, movie_id=2))
     db.session.add(Recommendation(user_id=2, movie_id=3))
     db.session.add(Recommendation(user_id=3, movie_id=1))
     db.session.commit()

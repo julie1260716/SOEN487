@@ -69,7 +69,7 @@ def create_user():
         return make_response(jsonify({"code": 404, "msg": str(error)}), 404)
     return jsonify({"code": 200, "msg": "success"})
 
-
+# get all user only admin has the permission
 @users_blueprint.route("/user")
 @token_required
 def get_all_users(current_user):
@@ -84,7 +84,7 @@ def get_all_users(current_user):
     user_list = User.query.all()
     return jsonify([row2dict(user) for user in user_list])
 
-
+# view user user can only view his/her own profile
 @users_blueprint.route("/user/<user_id>")
 @token_required
 def get_user(current_user, user_id):
@@ -105,6 +105,7 @@ def get_user(current_user, user_id):
         return make_response(jsonify({"code": 404, "msg": "Cannot find user profile with this user_id."}), 404)
 
 
+# view function for update user info, user can only update his/her own profile
 @users_blueprint.route("/user/<user_id>", methods={"PUT"})
 @token_required
 def update_user(current_user, user_id):
@@ -142,7 +143,7 @@ def update_user(current_user, user_id):
         return make_response(jsonify({"code": 404, "msg": str(error)}), 404)
     return jsonify({"code": 200, "msg": "update success"})
 
-
+# view function for update user email, will be called from auth service
 @users_blueprint.route("/user/update-email/<user_id>", methods={"PUT"})
 def update_email(user_id):
     """update email from auth service"""
@@ -158,7 +159,7 @@ def update_email(user_id):
         return make_response(jsonify({"code": 404, "msg": str(error)}), 404)
     return jsonify({"code": 200, "msg": "update success"})
 
-
+# view function for delete user, only admin user has the permission
 @users_blueprint.route("/user/<user_id>", methods={"DELETE"})
 @token_required
 def delete_user(current_user, user_id):
@@ -181,7 +182,7 @@ def delete_user(current_user, user_id):
         return make_response(jsonify({"code": 404, "msg": str(error)}), 404)
     return jsonify({"code": 200, "msg": "delete success"})
 
-
+# function which call auth service to delete corresponding user
 def forward_delete_auth(token, public_id):
     url = AUTH_URL_DELETE
     headers = {'content-type': 'application/json',
